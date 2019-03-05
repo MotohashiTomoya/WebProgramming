@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link href="css/common.css" rel="stylesheet">
+</head>
+<body>
+
+	<div class="login-form-area">
+		<nav class="navbar navbar-dark bg-secondary">
+
+			<a class="navbar-brand" href="#">ユーザ名さん</a> <a class="red" href="#">ログアウト</a>
+
+		</nav>
+		<div class="form-group">
+			<div class="text-center">
+				<h1>ユーザ一覧</h1>
+			</div>
+			<div align="right">
+				<a href="#">新規登録</a>
+			</div>
+			<form>
+
+				<div class="form-group row">
+					<label for="inputPassword" class="col-sm-2 col-form-label">ログインID</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="inputPassword"
+							placeholder="">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="inputPassword" class="col-sm-2 col-form-label">ユーザ名</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="inputPassword"
+							placeholder="">
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label for="inputPassword" class="col-sm-2 col-form-label">生年月日</label>
+					<div class="col-sm-4">
+						<input type="date" class="form-control" placeholder="">
+					</div>
+					<div class="col-sm-1 offset-sm-1">
+						～
+					</div>
+					<div class="col-sm-4 ">
+						<input type="date" class="form-control" placeholder="">
+
+					</div>
+				</div>
+				<div class="text-right">
+					<a type="button" class="btn btn-outline-secondary">検索</a>
+
+				</div>
+				<hr>
+				<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">ログインID</th>
+      <th scope="col">ユーザ名</th>
+      <th scope="col">生年月日</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+						<tr>
+							<th scope="row">id</th>
+							<td>UserName</td>
+							<td>date</td>
+							<td><button type="button" class="btn btn-primary">詳細</button>
+								<button type="button" class="btn btn-success">更新</button>
+								<button type="button" class="btn btn-danger">削除</button></td>
+						</tr>
+						<tr>
+							<th scope="row">id</th>
+							<td>UserName</td>
+							<td>date</td>
+							<td><button type="button" class="btn btn-primary">詳細</button>
+								<button type="button" class="btn btn-success">更新</button>
+								<button type="button" class="btn btn-danger">削除</button></td>
+						</tr>
+
+
+						<tr>
+							<th scope="row">id</th>
+							<td>UserName</td>
+							<td>date</td>
+							<td><button type="button" class="btn btn-primary">詳細</button>
+								<button type="button" class="btn btn-success">更新</button>
+								<button type="button" class="btn btn-danger">削除</button></td>
+
+						</tr>
+					</tbody>
+</table>
+			</form>
+
+		</div>
+	</div>
+
+</body>
+</html>
