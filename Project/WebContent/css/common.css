@@ -1,0 +1,13 @@
+.login-form-area {
+	width: 700px;
+	margin: auto;
+}
+.navbar-brand{
+	padding-left:330px;
+}
+a{
+	text-decoration:underline;
+}
+a.red{
+	color:red;
+}
