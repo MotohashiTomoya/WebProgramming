@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.UserDao;
+
 /**
  * Servlet implementation class NewUserServlet
  */
@@ -39,12 +41,20 @@ public class NewUserServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 
-		request.getParameter("loginId");
-		request.getParameter("password");
-		String name = null;
-		request.getParameter(name);
-		String birthDate = null;
-		request.getParameter(birthDate);
+		String loginId=request.getParameter("loginId");
+		String password=request.getParameter("password");
+		String name=request.getParameter("name");
+		String birthDate=request.getParameter("birthDate");
+
+		 UserDao dao = new UserDao();
+		 dao.InsertInformation(loginId,password,name,birthDate);
+
+
+
+
+
+
+		response.sendRedirect("UserListServlet");
 	}
 
 }

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta  charset="utf-8">
-<title>Insert title here</title>
+<title>ユーザ新規登録</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -72,12 +72,13 @@
 					</div>
 				</div><br>
 
-			</form>
+
 
 			<div class="text-center">
 				<a type="button" class="btn btn-outline-secondary">登録</a>
 
 			</div>
+			</form>
 		</div>
 
 

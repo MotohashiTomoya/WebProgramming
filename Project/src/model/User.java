@@ -19,13 +19,13 @@ public class User implements Serializable {
 	}
 
 	// 全てのデータをセットするコンストラクタ
-	public User(int id, String loginId, String name, Date birthDate, String password, String createDate,
+	public User(int id, String loginId, String name, String password, Date birthDate, String createDate,
 			String updateDate) {
 		this.id = id;
 		this.loginId = loginId;
 		this.name = name;
-		this.birthDate = birthDate;
 		this.password = password;
+		this.birthDate = birthDate;
 		this.createDate = createDate;
 		this.updateDate = updateDate;
 	}
@@ -47,17 +47,17 @@ public class User implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getBirthDate() {
-		return birthDate;
-	}
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
-	}
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public Date getBirthDate() {
+		return birthDate;
+	}
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 	public String getCreateDate() {
 		return createDate;
@@ -72,3 +72,5 @@ public class User implements Serializable {
 		this.updateDate = updateDate;
 	}
 }
+
+

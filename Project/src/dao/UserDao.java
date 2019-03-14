@@ -92,14 +92,14 @@ public class UserDao {
                 String password = rs.getString("password");
                 String createDate = rs.getString("create_date");
                 String updateDate = rs.getString("update_date");
-                User user = new User(id, loginId, name, birthDate, password, createDate, updateDate);
+                User user = new User(id, loginId, name, password, birthDate, createDate, updateDate);
 
                 userList.add(user);
             }
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
-        } finally {
+        } finally  {
             // データベース切断
             if (conn != null) {
                 try {
@@ -112,5 +112,19 @@ public class UserDao {
         }
         return userList;
     }
+
+
+	public void InsertInformation(String loginId, String password, String name, String birthDate) {
+		//valuesに値をセットする処理　新規登録Dao
+
+
+		String sql="INSERT INTO user(login_id,name,birth_date,password,create_date,update_date)VALUES(?,?,?,?,NOW(),NOW())";
+
+
+	}
+
+
+
+
 }
 
