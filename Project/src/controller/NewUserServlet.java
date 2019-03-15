@@ -18,13 +18,13 @@ import dao.UserDao;
 public class NewUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public NewUserServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public NewUserServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -46,15 +46,32 @@ public class NewUserServlet extends HttpServlet {
 		String name=request.getParameter("name");
 		String birthDate=request.getParameter("birthDate");
 
-		 UserDao dao = new UserDao();
-		 dao.InsertInformation(loginId,password,name,birthDate);
+		UserDao dao = new UserDao();
 
 
 
 
 
 
+		dao.InsertInformation(loginId,password,name,birthDate);
 		response.sendRedirect("UserListServlet");
+
+
+
+//		if() {
+//			request.setAttribute("errMsg", "入力された内容は正しくありません");
+//
+//
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/NewUser.jsp");
+//			dispatcher.forward(request, response);
+//
+//		}else {
+//			//ここにユーザ一覧の
+//
+//			response.sendRedirect("UserListServlet");
+//		}
+
+
 	}
 
 }

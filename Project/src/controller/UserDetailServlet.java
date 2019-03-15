@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,6 +29,7 @@ public class UserDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
 		// URLからGETパラメータとしてIDを受け取る
 				String id = request.getParameter("id");
 
@@ -36,9 +38,14 @@ public class UserDetailServlet extends HttpServlet {
 
 
 				// TODO  未実装：idを引数にして、idに紐づくユーザ情報を出力する
+//				UserDao dao = new UserDao();
+//	まだわかってない
+
+
 
 				// TODO  未実装：ユーザ情報をリクエストスコープにセットしてjspにフォワード
-
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/UserDetail.jsp");
+				dispatcher.forward(request, response);
 			}
 
 

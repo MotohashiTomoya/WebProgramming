@@ -75,7 +75,7 @@
 
 
 			<div class="text-center">
-				<a type="button" class="btn btn-outline-secondary">登録</a>
+				<button type="submit" class="btn btn-primary">登録</button>
 
 			</div>
 			</form>
