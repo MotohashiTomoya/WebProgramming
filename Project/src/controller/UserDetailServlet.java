@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.UserDao;
+import model.User;
+
 /**
  * Servlet implementation class UserDetailServlet
  */
@@ -27,6 +30,7 @@ public class UserDetailServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@SuppressWarnings("unused")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
@@ -38,12 +42,13 @@ public class UserDetailServlet extends HttpServlet {
 
 
 				// TODO  未実装：idを引数にして、idに紐づくユーザ情報を出力する
-//				UserDao dao = new UserDao();
-//	まだわかってない
-
+				UserDao dao = new UserDao();
+				User user = dao.findByLoginInfo1(id);
 
 
 				// TODO  未実装：ユーザ情報をリクエストスコープにセットしてjspにフォワード
+
+				User u=(User) request.getAttribute("user");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/UserDetail.jsp");
 				dispatcher.forward(request, response);
 			}

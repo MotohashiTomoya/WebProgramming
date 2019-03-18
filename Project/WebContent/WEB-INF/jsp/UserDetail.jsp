@@ -29,12 +29,11 @@
 			</div>
 			<br>
 
-<form class="form-signin" action="UserDetailServlet">
+<form class="form-signin" action="UserDetailServlet" method="get">
 			<div class="row">
 				<div class="col-6">ログインID</div>
 				<div class="col-6">
-					<input type="text" readonly class="form-control-plaintext"
-						id="loginId" name="loginId">
+					${user.loginId}
 				</div>
 			</div>
 			<br>
@@ -42,8 +41,7 @@
 			<div class="row">
 				<div class="col-6">ユーザ名</div>
 				<div class="col-6">
-					<input type="text" readonly class="form-control-plaintext"
-						id="name" name="name">
+					${user.name}
 				</div>
 			</div>
 			<br>
@@ -51,8 +49,7 @@
 			<div class="row">
 				<div class="col-6">生年月日</div>
 				<div class="col-6">
-					<input type="text" readonly class="form-control-plaintext"
-						id="birthDate" name="birthDate">
+					${user.birthDate}
 				</div>
 			</div>
 			<br>
@@ -60,8 +57,7 @@
 			<div class="row">
 				<div class="col-6">登録日時</div>
 				<div class="col-6">
-					<input type="text" readonly class="form-control-plaintext"
-						id="createDate" name="createDate">
+					${user.createDate}
 				</div>
 			</div>
 			<br>
@@ -69,8 +65,7 @@
 			<div class="row">
 				<div class="col-6">更新日時</div>
 				<div class="col-6">
-					<input type="text" readonly class="form-control-plaintext"
-						id="updateDate" name="updateDate">
+					${user.updateDate}
 				</div>
 			</div>
 			<br>

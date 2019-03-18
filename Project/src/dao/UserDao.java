@@ -137,42 +137,61 @@ public class UserDao {
 		}
 
 
-
 	}
 
-	public User findByLoginInfo(String targetId ) {
+	public User findByLoginInfo1(String id ) {
 		Connection conn = null;
+
 		try {
+			// データベースへ接続
 			conn = DBManager.getConnection();
-			String sql = "SELECT id,name,birthDate,createDate,updateDate FROM User WHERE id = " + targetId;
 
-			 Statement stmt = conn.createStatement();
-	            ResultSet rs = stmt.executeQuery(sql);
+			// SELECT文を準備
+			String sql = "SELECT * FROM user WHERE id=?";
+
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, id);
+			ResultSet rs = pStmt.executeQuery();
+			// 主キーに紐づくレコードは1件のみなので、rs.next()は1回だけ行う
+			while (rs.next()) {
+				User u = new User();
+				u.setLoginId(rs.getString("login_id"));
+				u.setName(rs.getString("name"));
+				u.setBirthDate(rs.getDate("birth_date"));
+				u.setCreateDate(rs.getString("create_date"));
+				u.setUpdateDate(rs.getString("update_date"));
 
 
-	            if (!rs.next()) {
-	                return null;
-	            }
-//	           DBスライド16を見る
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	            return null;
-	        } finally {
-	        	  if (conn != null) {
-	                  try {
-	                      conn.close();
-	                  } catch (SQLException e) {
-	                      e.printStackTrace();
-	                      return null;
-	                  }
-	              }
+				return u;
+			}
 
-	        }
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			// データベース切断
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+					return null;
+				}
+			}
+		}
 		return null;
 
 
-
-
-
 	}
+
+
+
+
+
+
 }
+
+
+
+
+

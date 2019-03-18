@@ -29,48 +29,66 @@ public class User implements Serializable {
 		this.createDate = createDate;
 		this.updateDate = updateDate;
 	}
+
+
+
+	public User() {
+
+	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getLoginId() {
 		return loginId;
 	}
+
 	public void setLoginId(String loginId) {
 		this.loginId = loginId;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public Date getBirthDate() {
 		return birthDate;
 	}
+
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
+
 	public String getCreateDate() {
 		return createDate;
 	}
+
 	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
+
 	public String getUpdateDate() {
 		return updateDate;
 	}
+
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 }
-
-
