@@ -152,9 +152,10 @@ public class UserDao {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, id);
 			ResultSet rs = pStmt.executeQuery();
-			// 主キーに紐づくレコードは1件のみなので、rs.next()は1回だけ行う
+
 			while (rs.next()) {
 				User u = new User();
+				u.setId(rs.getInt("id"));
 				u.setLoginId(rs.getString("login_id"));
 				u.setName(rs.getString("name"));
 				u.setBirthDate(rs.getDate("birth_date"));
@@ -184,6 +185,57 @@ public class UserDao {
 
 	}
 
+	public void InsertInformation1(String Id,  String password, String name,String birthDate ) {
+		Connection conn = null;
+		try {
+			// データベースへ接続
+			conn = DBManager.getConnection();
+			String sql="UPDATE user SET password=?,name=?,birth_date=?,update_date=NOW() WHERE id=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1,password );
+			ps.setString(2,name);
+			ps.setString(3,birthDate );
+			ps.setString(4,Id);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally  {
+			// データベース切断
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+
+	}
+	public void InsertInformation2(String Id) {
+		Connection conn = null;
+		try {
+			// データベースへ接続
+			conn = DBManager.getConnection();
+			String sql="DELETE FROM user WHERE id=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1,Id);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally  {
+			// データベース切断
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+
+	}
 
 
 
