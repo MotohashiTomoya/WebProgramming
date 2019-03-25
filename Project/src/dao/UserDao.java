@@ -236,12 +236,38 @@ public class UserDao {
 
 
 	}
+		public int findBynewuserinfo(String loginId) {
+			Connection conn = null;
+			try {
+				conn = DBManager.getConnection();
+//				サブリクエ
+				String sql = "SELECT count(*)AS matchUser FROM user WHERE login_id=?";
 
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+				pStmt.setString(1, loginId);
+				ResultSet rs = pStmt.executeQuery();
+				rs.next();
+				return rs.getInt("matchUser");
+			}catch (SQLException e) {
+				e.printStackTrace();
+			} finally  {
+				// データベース切断
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return 0;
 
-
-
-
+		}
 }
+
+
+
+
 
 
 

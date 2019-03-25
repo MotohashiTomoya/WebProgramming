@@ -63,10 +63,31 @@ public class UserUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
 		String password=request.getParameter("password");
+		String password1=request.getParameter("password1");
 		String name=request.getParameter("name");
 		String birthDate=request.getParameter("birthDate");
 
 		UserDao dao = new UserDao();
+
+//		パスワードと確認用パスワードが違う
+		if(!(password.equals(password1))) {
+			request.setAttribute("errMsg", "入力された内容は正しくありません");
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/UserUpdate.jsp");
+			dispatcher.forward(request, response);
+
+			return;
+		}
+
+		if(name.isEmpty()||birthDate.isEmpty()) {
+			request.setAttribute("errMsg", "入力された内容は正しくありません");
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/UserUpdate.jsp");
+			dispatcher.forward(request, response);
+
+			return;
+		}
+
 		dao.InsertInformation1(id, password, name, birthDate);
 
 		HttpSession session = request.getSession();

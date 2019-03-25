@@ -29,6 +29,9 @@
 			<div class="text-center">
 				<h1>ユーザ新規登録</h1>
 			</div><br>
+			<c:if test="${errMsg != null}">
+			<div class="alert alert-danger" role="alert">${errMsg}</div>
+		</c:if>
 
 			<form class="form-signin" action="NewUserServlet" method="post">
 
@@ -51,8 +54,8 @@
 				<div class="form-group row">
 					<label for="inputPassword" class="col-sm-6 col-form-label">パスワード(確認)</label>
 					<div class="col-sm-6">
-						<input type="password" class="form-control" id="password"
-							placeholder="" name="password">
+						<input type="password" class="form-control" id="password1"
+							placeholder="" name="password1">
 					</div>
 				</div><br>
 

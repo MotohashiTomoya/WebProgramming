@@ -28,12 +28,14 @@
 				<h1>ユーザ情報更新</h1>
 			</div>
 			<br>
+			<c:if test="${errMsg != null}">
+				<div class="alert alert-danger" role="alert">${errMsg}</div>
+			</c:if>
 			<div class="row">
 				<div class="col-6">ログインID</div>
 				<div class="col-6">${user.loginId}</div>
 			</div>
-			<br>
-			<br>
+			<br> <br>
 			<form class="form-signin" action="UserUpdateServlet" method="post">
 				<input type="hidden" name="id" value="${user.id}">
 				<div class="form-group row">
@@ -70,10 +72,10 @@
 				</div>
 				<br>
 
-		<div class="text-center">
-				<button type="submit" class="btn btn-primary">更新</button>
+				<div class="text-center">
+					<button type="submit" class="btn btn-primary">更新</button>
 
-			</div>
+				</div>
 			</form>
 		</div>
 
