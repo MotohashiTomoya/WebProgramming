@@ -74,7 +74,7 @@ public class UserDao {
 
 			// SELECT文を準備
 			// TODO: 未実装：管理者以外を取得するようSQLを変更する
-			String sql = "SELECT * FROM user";
+			String sql = "SELECT * FROM user WHERE login_id!='admin'";
 
 			// SELECTを実行し、結果表を取得
 			Statement stmt = conn.createStatement();
@@ -211,6 +211,31 @@ public class UserDao {
 		}
 
 
+	}
+	public void InsertInformation2(String Id, String name,String birthDate ) {
+		Connection conn = null;
+		try {
+			// データベースへ接続
+			conn = DBManager.getConnection();
+			String sql="UPDATE user SET name=?,birth_date=?,update_date=NOW() WHERE id=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+
+			ps.setString(1,name);
+			ps.setString(2,birthDate );
+			ps.setString(3,Id);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally  {
+			// データベース切断
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 	public void InsertInformation2(String Id) {
 		Connection conn = null;

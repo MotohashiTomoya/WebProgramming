@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class User implements Serializable {
@@ -29,8 +31,6 @@ public class User implements Serializable {
 		this.createDate = createDate;
 		this.updateDate = updateDate;
 	}
-
-
 
 	public User() {
 
@@ -74,6 +74,25 @@ public class User implements Serializable {
 
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
+	}
+
+	public String getBirthDateStr() {
+		String str = "";
+		if (this.birthDate != null) {
+			str = new SimpleDateFormat("yyyy-MM-dd").format(this.birthDate);
+		}
+		return str;
+	}
+
+	public void setBirthDateStr(String birthDate) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date formatDate = null;
+		try {
+			formatDate = sdf.parse(birthDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		this.birthDate = formatDate;
 	}
 
 	public String getCreateDate() {

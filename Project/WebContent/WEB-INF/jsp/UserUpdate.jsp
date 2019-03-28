@@ -27,36 +27,37 @@
 			<div class="text-center">
 				<h1>ユーザ情報更新</h1>
 			</div>
-			<br>
+
 			<c:if test="${errMsg != null}">
 				<div class="alert alert-danger" role="alert">${errMsg}</div>
 			</c:if>
+			<form class="form-signin" action="UserUpdateServlet" method="post">
 			<div class="row">
 				<div class="col-6">ログインID</div>
 				<div class="col-6">${user.loginId}</div>
+				<input type="hidden" name="loginId" value="${user.loginId}">
 			</div>
-			<br> <br>
-			<form class="form-signin" action="UserUpdateServlet" method="post">
-				<input type="hidden" name="id" value="${user.id}">
-				<div class="form-group row">
-					<label for="inputPassword" class="col-sm-6 col-form-label">パスワード</label>
-					<div class="col-sm-6">
-						<input type="password" class="form-control" id="inputPassword"
-							placeholder="" name="password">
-					</div>
+			<br> <br> <input type="hidden" name="id" value="${user.id}">
+
+			<div class="form-group row">
+				<label for="password" class="col-sm-6 col-form-label">パスワード</label>
+				<div class="col-sm-6">
+					<input type="password" class="form-control" id="password"
+						placeholder="" name="password">
 				</div>
-				<br>
+			</div>
+			<br>
 
 				<div class="form-group row">
-					<label for="inputPassword" class="col-sm-6 col-form-label">パスワード(確認)</label>
+					<label for="password" class="col-sm-6 col-form-label">パスワード(確認)</label>
 					<div class="col-sm-6">
-						<input type="password" class="form-control" id="inputPassword"
-							placeholder="" name="password">
+						<input type="password" class="form-control" id="password1"
+							placeholder="" name="password1">
 					</div>
 				</div>
 				<br>
 				<div class="form-group row">
-					<label for="inputPassword" class="col-sm-6 col-form-label">ユーザ名</label>
+					<label for="name" class="col-sm-6 col-form-label">ユーザ名</label>
 					<div class="col-sm-6">
 						<input type="text" class="form-control" id="name"
 							value="${user.name}" name="name">
@@ -64,10 +65,10 @@
 				</div>
 				<br>
 				<div class="form-group row">
-					<label for="inputPassword" class="col-sm-6 col-form-label">生年月日</label>
+					<label for="birthDate" class="col-sm-6 col-form-label">生年月日</label>
 					<div class="col-sm-6">
 						<input type="date" class="form-control" id="birthDate"
-							value="${user.birthDate}" name="birthDate">
+							value="${user.birthDateStr}" name="birthDate">
 					</div>
 				</div>
 				<br>

@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -79,14 +80,33 @@
 						<c:forEach var="user" items="${userList}">
 							<tr>
 
-								<td>${user.loginId}</td>
-								<td>${user.name}</td>
-								<td>${user.birthDate}</td>
-								<td><a class="btn btn-primary"
-									href="UserDetailServlet?id=${user.id}">詳細</a> <a
-									class="btn btn-success" href="UserUpdateServlet?id=${user.id}">更新</a>
-									<a class="btn btn-danger"
-									href="UserDeleteServlet?id=${user.id}">削除</a></td>
+									<td>${user.loginId}</td>
+									<td>${user.name}</td>
+									<td>${user.birthDate}</td>
+
+								<td><c:choose>
+										<c:when test="${userInfo.loginId=='admin'and user.loginId!='admin'}">
+											<a class="btn btn-primary"
+												href="UserDetailServlet?id=${user.id}">詳細</a>
+											<a class="btn btn-success"
+												href="UserUpdateServlet?id=${user.id}">更新</a>
+											<a class="btn btn-danger"
+												href="UserDeleteServlet?id=${user.id}">削除</a>
+										</c:when>
+										<c:when
+											test="${userInfo.loginId!='admin'and user.loginId!='admin'and user.name==userInfo.name}">
+											<a class="btn btn-primary"
+												href="UserDetailServlet?id=${user.id}">詳細</a>
+											<a class="btn btn-success"
+												href="UserUpdateServlet?id=${user.id}">更新</a>
+										</c:when>
+
+										<c:when test="${userInfo.loginId!='admin'and user.loginId!='admin'}">
+											<a class="btn btn-primary"
+												href="UserDetailServlet?id=${user.id}">詳細</a>
+										</c:when>
+									</c:choose></td>
+
 							</tr>
 						</c:forEach>
 					</tbody>
