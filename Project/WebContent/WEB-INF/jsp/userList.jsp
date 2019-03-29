@@ -58,12 +58,13 @@
 					</div>
 					<div class="col-sm-1 offset-sm-1">～</div>
 					<div class="col-sm-4 ">
-						<input type="date" class="form-control" placeholder="">
+						<input type="date" class="form-control" placeholder=""
+							name="endBirthDate">
 
 					</div>
 				</div>
 				<div class="text-right">
-					<a type="button" class="btn btn-outline-secondary">検索</a>
+					<button type="submit" class="btn btn-primary">検索</button>
 				</div>
 
 				<hr>
@@ -80,12 +81,13 @@
 						<c:forEach var="user" items="${userList}">
 							<tr>
 
-									<td>${user.loginId}</td>
-									<td>${user.name}</td>
-									<td>${user.birthDate}</td>
+								<td>${user.loginId}</td>
+								<td>${user.name}</td>
+								<td>${user.birthDate}</td>
 
 								<td><c:choose>
-										<c:when test="${userInfo.loginId=='admin'and user.loginId!='admin'}">
+										<c:when
+											test="${userInfo.loginId=='admin'}">
 											<a class="btn btn-primary"
 												href="UserDetailServlet?id=${user.id}">詳細</a>
 											<a class="btn btn-success"
@@ -94,14 +96,15 @@
 												href="UserDeleteServlet?id=${user.id}">削除</a>
 										</c:when>
 										<c:when
-											test="${userInfo.loginId!='admin'and user.loginId!='admin'and user.name==userInfo.name}">
+											test="${userInfo.loginId!='admin' and user.loginId==userInfo.loginId}">
 											<a class="btn btn-primary"
 												href="UserDetailServlet?id=${user.id}">詳細</a>
 											<a class="btn btn-success"
 												href="UserUpdateServlet?id=${user.id}">更新</a>
 										</c:when>
 
-										<c:when test="${userInfo.loginId!='admin'and user.loginId!='admin'}">
+										<c:when
+											test="${userInfo.loginId!='admin'}">
 											<a class="btn btn-primary"
 												href="UserDetailServlet?id=${user.id}">詳細</a>
 										</c:when>

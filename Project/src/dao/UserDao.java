@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import common.Code;
 import model.User;
 
 public class UserDao {
@@ -31,7 +32,7 @@ public class UserDao {
 			// SELECTを実行し、結果表を取得
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, loginId);
-			pStmt.setString(2, password);
+			pStmt.setString(2, Code.code(password));
 			ResultSet rs = pStmt.executeQuery();
 
 			// 主キーに紐づくレコードは1件のみなので、rs.next()は1回だけ行う
@@ -121,7 +122,7 @@ public class UserDao {
 			ps.setString(1,loginId );
 			ps.setString(2,name);
 			ps.setString(3,birthDate );
-			ps.setString(4,password);
+			ps.setString(4,Code.code(password));
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -192,7 +193,7 @@ public class UserDao {
 			conn = DBManager.getConnection();
 			String sql="UPDATE user SET password=?,name=?,birth_date=?,update_date=NOW() WHERE id=?";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1,password );
+			ps.setString(1,Code.code(password));
 			ps.setString(2,name);
 			ps.setString(3,birthDate );
 			ps.setString(4,Id);
@@ -287,6 +288,69 @@ public class UserDao {
 			}
 			return 0;
 
+		}
+
+		public List<User> findSearch(String loginIdP, String userNameP ,String staBirthDate,String endBirthDate ) {
+			Connection conn = null;
+			List<User> userList = new ArrayList<User>();
+
+			try {
+				// データベースへ接続
+				conn = DBManager.getConnection();
+
+				// SELECT文を準備
+				// TODO: 未実装：管理者以外を取得するようSQLを変更する
+				String sql = "SELECT * FROM user WHERE login_id!='admin'";
+
+
+				if(!loginIdP.equals("")) {
+					sql += " AND login_id = '" + loginIdP + "'";
+				}
+				if(!userNameP.equals("")) {
+					sql += " AND name LIKE  '%" + userNameP + "%'";
+				}
+				if(!staBirthDate.equals("")) {
+					sql += " AND birth_date >= '" + staBirthDate + "'";
+				}
+				if(!endBirthDate.equals("")) {
+					sql += " AND birth_date <='" + endBirthDate + "'";
+				}
+
+				System.out.println(sql);
+
+				// SELECTを実行し、結果表を取得
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql);
+
+				// 結果表に格納されたレコードの内容を
+				// Userインスタンスに設定し、ArrayListインスタンスに追加
+				while (rs.next()) {
+					int id = rs.getInt("id");
+					String loginId = rs.getString("login_id");
+					String name = rs.getString("name");
+					Date birthDate = rs.getDate("birth_date");
+					String password = rs.getString("password");
+					String createDate = rs.getString("create_date");
+					String updateDate = rs.getString("update_date");
+					User user = new User(id, loginId, name, password, birthDate, createDate, updateDate);
+
+					userList.add(user);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			} finally {
+				// データベース切断
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+						return null;
+					}
+				}
+			}
+			return userList;
 		}
 }
 

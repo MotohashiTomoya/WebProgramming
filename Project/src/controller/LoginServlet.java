@@ -34,12 +34,21 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// TODO 未実装：ログインセッションがある場合、ユーザ一覧画面にリダイレクトさせる
+		// ログインセッションがある場合、ユーザ一覧画面にリダイレクトさせる
 
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
-		dispatcher.forward(request, response);
+		HttpSession session = request.getSession();
+		User us=(User) session.getAttribute("userInfo");
+
+		if(us==null) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+			dispatcher.forward(request, response);
+			return;
+		}
+			response.sendRedirect("UserListServlet");
+
 	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
